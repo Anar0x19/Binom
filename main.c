@@ -1,26 +1,34 @@
 #include <stdio.h>
 
-int isDivisibleBy7(int num) {
-   
-    while (num >= 10) {
-        int last_digit = num % 10;  
-        num = num / 10 + last_digit * 5;  
+int comb(int n, int k) {
+    if (k == 0 || k == n) return 1;
+    if (k == 1 || k == n - 1) return n;
+    return comb(n - 1, k - 1) + comb(n - 1, k);
+}
+
+int hockey_stick_identity(int r, int n) {
+    int sum_coeffs = 0;
+    for (int k = r; k < n; k++) {
+        sum_coeffs += comb(k, r);
     }
-       return num % 7 == 0;
+    printf("Summ of binomial koefficent: %d\n", sum_coeffs);
+    printf("result of binomial koefficent: %d\n", comb(n, r + 1));
+    return sum_coeffs == comb(n, r + 1);
 }
 
 int main() {
-    int number;
+    int r, n;
 
-    printf("Enter number which divide to 7: ");
-    scanf("%d", &number);
+    printf("Input r: ");
+    scanf("%d", &r);
+    printf("Input n: ");
+    scanf("%d", &n);
 
-    if (isDivisibleBy7(number)) {
-        printf("Number %d divide to 7.\n", number);
+    if (hockey_stick_identity(r, n)) {
+        printf("The identity is satisfied.\n");
     } else {
-        printf("Number %d cant divide to 7.\n", number);
+        printf("The identity is not satisfied.\n");
     }
 
     return 0;
 }
-
