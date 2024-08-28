@@ -11,8 +11,8 @@ int hockey_stick_identity(int r, int n) {
     for (int k = r; k < n; k++) {
         sum_coeffs += comb(k, r);
     }
-    printf("Summ of binomial koefficent: %d\n", sum_coeffs);
-    printf("result of binomial koefficent: %d\n", comb(n, r + 1));
+    printf("Summ of binomial coefficent: %d\n", sum_coeffs);
+    printf("result of binomial coefficent: %d\n", comb(n, r + 1));
     return sum_coeffs == comb(n, r + 1);
 }
 
